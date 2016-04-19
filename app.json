@@ -1,0 +1,6 @@
+{
+  "name": "Learning Locker",
+  "description": "Learning Locker LRS Test",
+  "image": "centos/centos7",
+  "addons": []
+}
