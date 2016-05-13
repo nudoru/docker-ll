@@ -40,7 +40,7 @@ RUN cd /learninglocker; composer install
 RUN sed -i "s/^.*username.*/\t\t\'username\' => \'username\',/g" /learninglocker/app/config/database.php; sed -i "s/^.*username.*/\t\t\'password\' => \'password\',/g" /learninglocker/app/config/database.php
 
 # Start mongodb and create a mongo user with rw perms then finalize learning locker mongodb setup
-RUN exec /usr/bin/mongod & sleep 10; mongo learninglocker --eval 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'; cd /learninglocker; php artisan migrate
+RUN exec /usr/bin/mongod & sleep 10; mongo learninglocker --eval --smallfiles 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'; cd /learninglocker; php artisan migrate
 
 # modify httpd configuration
 RUN echo '<Directory "/var/www/learninglocker/public">' >> /etc/httpd/conf/httpd.conf; echo '  AllowOverride All' >> /etc/httpd/conf/httpd.conf; echo '</Directory>' >> /etc/httpd/conf/httpd.conf
