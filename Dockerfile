@@ -43,8 +43,7 @@ RUN sed -i "s/^.*username.*/\t\t\'username\' => \'username\',/g" /learninglocker
 # RUN rm /var/lib/mongodb/mongod.lock
 RUN exec /usr/bin/mongod --smallfiles & sleep 5
 
-RUN ps -aux | grep mongo
-RUN netstat -nap | grep 27017
+RUN service mongod start
 
 RUN mongo learninglocker --eval --host localhost 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'
 RUN cd /learninglocker 
