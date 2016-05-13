@@ -42,8 +42,7 @@ RUN sed -i "s/^.*username.*/\t\t\'username\' => \'username\',/g" /learninglocker
 # Start mongodb and create a mongo user with rw perms then finalize learning locker mongodb setup
 # RUN rm /var/lib/mongodb/mongod.lock
 RUN exec /usr/bin/mongod --smallfiles & sleep 5; mongo learninglocker --host localhost --eval 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'
-RUN cd /learninglocker
-RUN php artisan migrate
+RUN cd /learninglocker; php artisan migrate
 
 # modify httpd configuration
 RUN echo '<Directory "/var/www/learninglocker/public">' >> /etc/httpd/conf/httpd.conf; echo '  AllowOverride All' >> /etc/httpd/conf/httpd.conf; echo '</Directory>' >> /etc/httpd/conf/httpd.conf
