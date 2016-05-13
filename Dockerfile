@@ -40,7 +40,7 @@ RUN cd /learninglocker; composer install
 RUN sed -i "s/^.*username.*/\t\t\'username\' => \'username\',/g" /learninglocker/app/config/database.php; sed -i "s/^.*username.*/\t\t\'password\' => \'password\',/g" /learninglocker/app/config/database.php
 
 # Start mongodb and create a mongo user with rw perms then finalize learning locker mongodb setup
-RUN rm /var/lib/mongodb/mongod.lock
+# RUN rm /var/lib/mongodb/mongod.lock
 RUN exec /usr/bin/mongod --smallfiles & sleep 5
 RUN mongo learninglocker --eval --host localhost 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'
 RUN cd /learninglocker 
