@@ -43,7 +43,6 @@ RUN sed -i "s/^.*username.*/\t\t\'username\' => \'username\',/g" /learninglocker
 # RUN rm /var/lib/mongodb/mongod.lock
 RUN exec /usr/bin/mongod --smallfiles & sleep 5; mongo learninglocker --host localhost --eval 'printjson(db.createUser({user:"username",pwd:"password",roles:["readWrite"]}))'
 RUN cd /learninglocker
-RUN composer install
 RUN php artisan migrate
 
 # modify httpd configuration
