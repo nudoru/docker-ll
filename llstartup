@@ -15,4 +15,4 @@ chmod 700 /run/httpd/htcacheclean
 chown root:apache /run/httpd
 chown apache:apache /run/httpd/htcacheclean
 
-exec /usr/sbin/apachectl -D FOREGROUND & exec /usr/bin/mongod
+exec /usr/sbin/apachectl -D FOREGROUND & exec /usr/bin/mongod --smallfiles
