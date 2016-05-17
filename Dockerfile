@@ -45,7 +45,7 @@ RUN exec /usr/bin/mongod --smallfiles & sleep 5; mongo learninglocker --host loc
 
 # modify httpd configuration
 # RUN echo '<Directory "/var/www/learninglocker/public">' >> /etc/httpd/conf/httpd.conf; echo '  AllowOverride All' >> /etc/httpd/conf/httpd.conf; echo '  Header set Access-Control-Allow-Origin "http://list2-nudoru.rhcloud.com"' >> /etc/httpd/conf/httpd.conf;echo '  Header set Access-Control-Allow-Credentials "true"' >> /etc/httpd/conf/httpd.conf; echo '</Directory>' >> /etc/httpd/conf/httpd.conf
-RUN echo '<Directory "/var/www/learninglocker/public">' >> /etc/httpd/conf/httpd.conf; echo '  AllowOverride All' >> /etc/httpd/conf/httpd.conf; echo '  Header set Access-Control-Allow-Origin "*"' >> /etc/httpd/conf/httpd.conf;echo '  Header set Access-Control-Allow-Credentials "true"' >> /etc/httpd/conf/httpd.conf; echo '</Directory>' >> /etc/httpd/conf/httpd.conf
+RUN echo '<Directory "/var/www/learninglocker/public">' >> /etc/httpd/conf/httpd.conf; echo '  AllowOverride All' >> /etc/httpd/conf/httpd.conf; echo '  Header set Access-Control-Allow-Origin "*"' >> /etc/httpd/conf/httpd.conf;echo '</Directory>' >> /etc/httpd/conf/httpd.conf
 RUN sed -i "s/^DocumentRoot.*/DocumentRoot \'\/var\/www\/learninglocker\/public\/\'/g" /etc/httpd/conf/httpd.conf
 RUN chown -R apache:apache /learninglocker; ln -s /learninglocker/ /var/www/
 
